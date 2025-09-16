@@ -9,16 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface INotaRepositorio extends JpaRepository<Nota, Integer> {
+public interface INotaRepositorio extends JpaRepository<Nota, Long> {
 
-    //Consultas
-
-    //Buscando la nota del estudiante
-    Optional<Nota>findByValor(Double valor);
-
-    //Buscando la fecha en que se realizo la evaluación
-    Optional<Nota>findByFecha(LocalDate fecha);
-
-    //Buscando las calificaciones de los estudiantes
-    List<Nota>findByValorContaining(Integer valor);
+    Optional<Nota>finByEstudianteId(Integer id);
+    Optional<Nota>findByMateriaAndGrupoId(Materia materia);
 }
