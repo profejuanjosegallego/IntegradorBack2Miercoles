@@ -6,27 +6,19 @@ import java.time.LocalDate;
 
 public class NotaDTO {
 
-    private Integer id;
     private Double valor;
     private TipoEvaluacion tipoEvaluacion;
     private LocalDate fecha;
+    private Materia materia;
 
     public NotaDTO() {
     }
 
-    public NotaDTO(Integer id, Double valor, TipoEvaluacion tipoEvaluacion, LocalDate fecha) {
-        this.id = id;
+    public NotaDTO(Integer id, Double valor, TipoEvaluacion tipoEvaluacion, LocalDate fecha, Materia materia) {
         this.valor = valor;
         this.tipoEvaluacion = tipoEvaluacion;
         this.fecha = fecha;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.materia = materia;
     }
 
     public Double getValor() {
@@ -53,4 +45,11 @@ public class NotaDTO {
         this.fecha = fecha;
     }
 
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
 }
