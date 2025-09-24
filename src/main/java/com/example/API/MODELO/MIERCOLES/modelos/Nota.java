@@ -1,25 +1,44 @@
 package com.example.API.MODELO.MIERCOLES.modelos;
 
 import com.example.API.MODELO.MIERCOLES.ayudas.TipoEvaluacion;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "notas")
 public class Nota {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "valor", nullable = false, unique = false)
     private Double valor;
+
+    @Column(name = "tipoEvaluacion", nullable = false, unique = false)
     private TipoEvaluacion tipoEvaluacion;
-    private LocalDate;
+
+    @Column(name = "fecha", length = 30)
+    private LocalDate fecha;
+
+    @Column(name = "materia_id", nullable = false, unique = true)
+    private  Integer materia_id;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_materia", referencedColumnName = "id")
+    @JsonBackReference(value = "relacionentrenotasymateria")
     private Materia materia;
 
     public Nota() {
     }
 
-    public Nota(Integer id, Double valor, TipoEvaluacion tipoEvaluacion, Materia materia) {
+    public Nota(Integer id, Double valor, TipoEvaluacion tipoEvaluacion, LocalDate fecha) {
         this.id = id;
         this.valor = valor;
+        this.fecha = fecha;
         this.tipoEvaluacion = tipoEvaluacion;
-        this.materia = materia;
     }
 
     public Integer getId() {
@@ -38,19 +57,19 @@ public class Nota {
         this.valor = valor;
     }
 
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
     public TipoEvaluacion getTipoEvaluacion() {
         return tipoEvaluacion;
     }
 
     public void setTipoEvaluacion(TipoEvaluacion tipoEvaluacion) {
         this.tipoEvaluacion = tipoEvaluacion;
-    }
-
-    public Materia getMateria() {
-        return materia;
-    }
-
-    public void setMateria(Materia materia) {
-        this.materia = materia;
     }
 }
